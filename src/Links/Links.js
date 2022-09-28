@@ -7,6 +7,7 @@ const Links = () => {
         <Link to="/homepage"></Link>
         <Link to="/authform"></Link>
         <Link to="/composemail"></Link>
+        <Link to="/displaymail"></Link>
     </div>
   )
 }

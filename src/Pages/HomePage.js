@@ -6,10 +6,15 @@ const HomePage = () => {
     const composeMailHandler=()=>{
       history.replace("/composemail")
     }
+
+    const receivemailHandler=()=>{
+        history.replace("/displaymail")
+    }
   return (
     <div>
     <div> Welcome to Home Page</div>
     <button onClick={composeMailHandler}>Compose Mail</button>
+    <button onClick={receivemailHandler}>Mail</button>
     </div>
   )
 }
