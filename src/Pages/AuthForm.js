@@ -61,7 +61,7 @@ const AuthForm = () => {
           console.log("hi");
         })
         .catch((err) => {
-          console.log(err);
+          alert(err);
         });
     }
     // else{

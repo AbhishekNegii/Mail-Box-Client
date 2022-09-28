@@ -3,6 +3,7 @@ import AuthForm from './Pages/AuthForm';
 import HomePage from './Pages/HomePage';
 import {Redirect,Switch,Route} from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import ComposeMail from './Pages/ComposeMail';
 
 function App() {
   const isLoggedIn=useSelector(state=>state.auth.isLoggedIn)
@@ -15,6 +16,9 @@ function App() {
         {isLoggedIn && <Route path="/homepage" exact>
           <HomePage/>
         </Route>}
+        <Route path="/composemail">
+          <ComposeMail/>
+        </Route>
         <Route path="*">
           <Redirect to="/authform">
             <AuthForm />
