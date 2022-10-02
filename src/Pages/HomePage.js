@@ -1,21 +1,15 @@
 import React from 'react'
-import {useHistory} from 'react-router-dom'
+import Header from '../Components/Header/Header'
+import Sidebar from '../Components/Sidebar/Sidebar'
 
 const HomePage = () => {
-    const history= useHistory()
-    const composeMailHandler=()=>{
-      history.replace("/composemail")
-    }
-
-    const receivemailHandler=()=>{
-        history.replace("/displaymail")
-    }
-  return (
+    
+   return (
     <div>
-    <div> Welcome to Home Page</div>
-    <button onClick={composeMailHandler}>Compose Mail</button>
-    <button onClick={receivemailHandler}>Mail</button>
-    </div>
+        <Header/>
+        <Sidebar/>
+    <h1> Welcome to Mail Chat Box</h1>
+     </div>
   )
 }
 

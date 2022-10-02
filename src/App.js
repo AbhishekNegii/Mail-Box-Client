@@ -5,23 +5,33 @@ import {Redirect,Switch,Route} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import ComposeMail from './Pages/ComposeMail';
 import GetMail from './Components/GetMail';
+import InboxMail from './Components/InboxMail';
+import SingleMsg from './Components/SingleMsg';
 
 function App() {
   const isLoggedIn=useSelector(state=>state.auth.isLoggedIn)
   console.log("isLog",isLoggedIn)
   return (
     <Switch>
+      
       <Route path="/authform">
         <AuthForm/>
         </Route>
         {isLoggedIn && <Route path="/homepage" exact>
           <HomePage/>
         </Route>}
-        <Route path="/composemail">
+         <Route path="/composemail">
           <ComposeMail/>
         </Route>
-        <Route path="/displaymail">
+        <Route path="/displaymail" >
           <GetMail/>
+        </Route>
+        <Route path="/inboxdisplay" exact>
+          {/* <InboxDisplay/> */}
+          <InboxMail/>
+        </Route>
+        <Route path="/singlemsg">
+          <SingleMsg/>
         </Route>
         <Route path="*">
           <Redirect to="/authform">

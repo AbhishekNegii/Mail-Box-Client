@@ -55,49 +55,52 @@ const AuthForm = () => {
           }
         })
         .then((data) => {
-          console.log(data);
-          dispatch(authActions.login(data.idToken));
-          history.replace("/homepage");
+          console.log("data",data);
+          const token= data.idToken
+          const loginEmail=data.email
+          dispatch(authActions.login({token,loginEmail}));
+          
+          history.replace("/inboxdisplay");
           console.log("hi");
         })
         .catch((err) => {
           alert(err);
         });
     }
-    // else{
-    //   fetch(
-    //     "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCCXzhbX-HRm-ujGbrRU7-ynAlPT4t8HTY",
-    //     {
-    //       method: "POST",
-    //       body: JSON.stringify({
-    //         email: mail,
-    //         password: password,
-    //         confirmPassword: confirmPassword,
-    //         returnSecureToken: true,
-    //       }),
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   )
-    //     .then((resp) => {
-    //       if (resp.ok) {
-    //         console.log(mail, "succesfully signed up");
-    //         return resp.json();
-    //       } else {
-    //         resp.json().then((data) => {
-    //           // console.log(data);
-    //         });
-    //       }
-    //     })
-    //     .then((data) => {
-    //       console.log(data);
-    //     dispatch(authActions.login(data.idToken))
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // }
+    else{
+      fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCCXzhbX-HRm-ujGbrRU7-ynAlPT4t8HTY",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: mail,
+            password: password,
+            // confirmPassword: confirmPassword,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((resp) => {
+          if (resp.ok) {
+            alert(mail, "succesfully signed up");
+            return resp.json();
+          } else {
+            resp.json().then((data) => {
+              // console.log(data);
+            });
+          }
+        })
+        .then((data) => {
+          console.log(data);
+        dispatch(authActions.login(data.idToken))
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   return (
     <section>

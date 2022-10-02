@@ -1,24 +1,48 @@
 import React from "react";
-import ComposeMail from "../Pages/ComposeMail";
-import {useHistory} from "react-router-dom"
+import Header from "./Header/Header";
+import Sidebar from "./Sidebar/Sidebar";
+import  "./EmailBody.css"
 const DisplayMail = (props) => {
-const history= useHistory()
-    const composeMailHandler=()=>{
-history.replace('/composemail')
-    }
+
+   
   console.log("props", props);
-  const display = props.data.map((item) => (
+
+//   const deleteHandler=(mail)=>{
+// console.log("token",mail)
+//   }
+let display
+if(props.data==0){
+display=<p>SentMail is empty</p>
+}else{
+  display = props.data.map((item) => (
+    <ul>
     <li>
-      {item.mail}
-      {item.subject}
-      {item.text}
+      <div className="emailbody">
+        <div className="emailbody__left">
+          <h3>To:- {item.mail}</h3>
+        </div>
+        <div className="emailbody__right">
+          <h4>{item.subject} </h4>
+        </div>
+        <div className="emailbody__middle">
+          <div className="emailbody__middle__msg">
+            <p>{item.text}</p>
+          </div>
+        </div>
+        {/* <button onClick={deleteHandler}>Del</button>       */}
+      </div>
     </li>
-  ));
+  </ul>
+));
+}
+  
   return (
     <div>
-    <button onClick={composeMailHandler}>ComposeMail</button>
-      <div>DisplayMail</div>
-      {display}
+        <Header/>
+        <Sidebar/>
+       <h2>Mail</h2>
+        {display}
+        
     </div>
   );
 };
