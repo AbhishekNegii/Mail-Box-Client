@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom"
 import "./LogoutButton.css"
 
 
-const Logout = () => {
+const Logout = (props) => {
     const history=useHistory()
 
     const logoutHandler=()=>{
@@ -15,6 +15,7 @@ const Logout = () => {
   return (
     <div className='exit-btn'>
        <LogoutIcon className='exit-btn-3' onClick={logoutHandler}/>
+       
     </div>
   )
 }

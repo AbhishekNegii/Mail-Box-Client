@@ -27,9 +27,8 @@ function App() {
           <GetMail/>
         </Route>
         <Route path="/inboxdisplay" exact>
-          {/* <InboxDisplay/> */}
           <InboxMail/>
-        </Route>
+             </Route>
         <Route path="/singlemsg">
           <SingleMsg/>
         </Route>

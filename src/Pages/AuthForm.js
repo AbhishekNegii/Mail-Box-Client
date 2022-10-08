@@ -104,6 +104,7 @@ const AuthForm = () => {
   };
   return (
     <section>
+      <h1>Mail Chat Box</h1>
       <div class="form">
         <form onSubmit={submitHandler}>
           <div class="title"> {isLogin ? "Login" : "SignUp"}</div>
@@ -113,7 +114,7 @@ const AuthForm = () => {
               type="text"
               class="input"
               required
-              ref={mailInputRef}
+               ref={mailInputRef}
             />
             <div class="cut"></div>
             <label class="placeholder">Email-Id</label>
@@ -124,6 +125,7 @@ const AuthForm = () => {
               class="input"
               type="password"
               ref={passInputRef}
+              
               required
             />
             <div class="cut"></div>

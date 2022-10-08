@@ -19,20 +19,20 @@ const GetMail = () => {
         `https://chat-box-2fbd2-default-rtdb.firebaseio.com/mail/${updatedLoggedInEmail}SentMail.json/`
       );
       const data = await response.json();
-       console.log("dataa",data)
-      
-        dispatch(mailAction.addedMail(data));
-        const array = [];
-        for (const key in data) {
-          array.push({
-            mail: data[key].mail,
-            subject: data[key].subject,
-            text: data[key].text,
-          });
-        }
-        setMail(array);
-        console.log("arrray", array);
-      
+      console.log("dataa", data);
+
+      dispatch(mailAction.addedMail(data));
+      const array = [];
+      for (const key in data) {
+        array.push({
+          id:key,
+          mail: data[key].mail,
+          subject: data[key].subject,
+          text: data[key].text,
+        });
+      }
+      setMail(array);
+      console.log("arrray", array);
     } catch (err) {
       alert(err);
     }

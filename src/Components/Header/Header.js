@@ -1,8 +1,8 @@
 import React from "react";
 import "./Header.css";
+import {Link} from 'react-router-dom'
 import ReorderIcon from "@mui/icons-material/Reorder";
 import { IconButton,Avatar } from "@material-ui/core";
-import SearchIcon from "@mui/icons-material/Search";
 import HelpIcon from "@mui/icons-material/Help";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AppsIcon from "@mui/icons-material/Apps";
@@ -16,11 +16,12 @@ const Header = () => {
         <IconButton>
           <ReorderIcon />
         </IconButton>
-        <img
+       <Link to='/inboxdisplay'> <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkyTuYIHPx3PReRy_jrwGo2FgEFYMwdirWoRIRtJj1IUjrbYp5lV3jyaH-3l3s2u0tYbw&usqp=CAU"
           alt="gmail-img"
-          width="100px"
+          width="150px"
         />
+        </Link>
       </div>
       <div className="header__middle">
         <div className="search_mail">
@@ -40,7 +41,7 @@ const Header = () => {
         <IconButton>
           <AppsIcon />
         </IconButton>
-        <Avatar/>
+             <Avatar/>
         <Logout/>
       </div>
     </div>

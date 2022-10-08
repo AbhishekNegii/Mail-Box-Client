@@ -1,14 +1,16 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useHistory } from "react-router-dom";
 
 import BackButton from "../Components/Header/BackButton";
+import { mailAction } from "../Store/MailSlice";
 
 const ComposeMail = () => {
   const history = useHistory();
+  const dispatch=useDispatch();
   const loggedInEmail = useSelector((state) => state.auth.loggedInEmail);
   console.log("lie", loggedInEmail);
   
@@ -31,16 +33,17 @@ const ComposeMail = () => {
     // const text=textInputRef.current.value;
     // console.log(mail,subject,text)
     const mailid = mail.replace("@", "").replace(".", "");
-
+const input={
+          mail: updatedLoggedInEmail,
+          subject: subject,
+          text: bodyText,
+          read:false,
+}
     fetch(
       `https://chat-box-2fbd2-default-rtdb.firebaseio.com/mail/${mailid}Inbox.json`,
       {
         method: "POST",
-        body: JSON.stringify({
-          mail: loggedInEmail,
-          subject: subject,
-          text: bodyText,
-        }),
+        body: JSON.stringify(input),
         headers: {
           "Content-Type": "application/json",
         },
@@ -49,6 +52,7 @@ const ComposeMail = () => {
       .then((resp) => {
         if (resp.ok) {
           console.log("resp1", resp);
+          dispatch(mailAction.sendMail(input))
           return resp.json();
         } else {
           return resp.json().then((data) => {
@@ -70,7 +74,7 @@ const ComposeMail = () => {
       {
         method: "POST",
         body: JSON.stringify({
-          mail: mail,
+          mail: mailid,
           subject: subject,
           text: bodyText,
         }),

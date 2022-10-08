@@ -2,14 +2,24 @@ import React from "react";
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
 import  "./EmailBody.css"
+import { useSelector } from "react-redux";
 const DisplayMail = (props) => {
 
    
   console.log("props", props);
+  const loggedInEmail= useSelector(state=>state.auth.loggedInEmail)
+  const updatedLoggedInEmail=loggedInEmail.replace('@','').replace('.','')
 
-//   const deleteHandler=(mail)=>{
-// console.log("token",mail)
-//   }
+  const deleteHandler= async (id)=>{
+   console.log("idSent", id)
+   const response= await fetch(`https://chat-box-2fbd2-default-rtdb.firebaseio.com/mail/${updatedLoggedInEmail}SentMail/${id}.json/`,{
+    method:'DELETE'
+   })
+   if(response.status==200){
+    alert('Deleted Successfully')
+   }
+
+  }
 let display
 if(props.data==0){
 display=<p>SentMail is empty</p>
@@ -29,7 +39,7 @@ display=<p>SentMail is empty</p>
             <p>{item.text}</p>
           </div>
         </div>
-        {/* <button onClick={deleteHandler}>Del</button>       */}
+        <button onClick={deleteHandler.bind(null,item.id)}>Del</button>      
       </div>
     </li>
   </ul>
